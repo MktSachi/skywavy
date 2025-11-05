@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import WeatherCard from '@/components/WeatherCard';
 import Forecast from '@/components/Forecast';
-import { getCurrentWeather, getForecast, getWeatherByCoords, getForecastByCoords } from '@/utils/apiClient';
+import { fetchCurrent, fetchForecast } from '@/utils/apiClient';
 
 export default function Home() {
   const [weather, setWeather] = useState(null);
@@ -20,11 +20,14 @@ export default function Home() {
           const { latitude, longitude } = position.coords;
           try {
             setLoading(true);
-            const [weatherData, forecastData] = await Promise.all([
-              getWeatherByCoords(latitude, longitude),
-              getForecastByCoords(latitude, longitude),
-            ]);
-            setWeather(weatherData);
+            const forecastData = await fetchForecast(latitude, longitude);
+            // Extract current weather from forecast data
+            setWeather({
+              name: forecastData.city.name,
+              main: forecastData.list[0].main,
+              weather: forecastData.list[0].weather,
+              wind: forecastData.list[0].wind,
+            });
             setForecast(forecastData);
             setError(null);
           } catch (err) {
@@ -48,15 +51,13 @@ export default function Home() {
     setError(null);
 
     try {
-      const [weatherData, forecastData] = await Promise.all([
-        getCurrentWeather(city),
-        getForecast(city),
-      ]);
+      const weatherData = await fetchCurrent(city);
+      const forecastData = await fetchForecast(weatherData.coord.lat, weatherData.coord.lon);
       setWeather(weatherData);
       setForecast(forecastData);
     } catch (err) {
       console.error('Error fetching weather:', err);
-      setError('City not found. Please try again.');
+      setError(err.message || 'City not found. Please try again.');
       setWeather(null);
       setForecast(null);
     } finally {

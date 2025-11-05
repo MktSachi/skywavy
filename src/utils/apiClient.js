@@ -3,83 +3,72 @@ import axios from 'axios';
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_KEY;
 const BASE_URL = process.env.NEXT_PUBLIC_OPENWEATHER_BASE;
 
-// Create axios instance with default config
-const apiClient = axios.create({
-  baseURL: BASE_URL,
-  params: {
-    appid: API_KEY,
-    units: 'metric', // Use Celsius
-  },
-});
-
 /**
  * Fetch current weather data for a city
  * @param {string} city - City name
  * @returns {Promise} Weather data
+ * @throws {Error} When API request fails
  */
-export const getCurrentWeather = async (city) => {
+export const fetchCurrent = async (city) => {
   try {
-    const response = await apiClient.get('/weather', {
-      params: { q: city },
+    const response = await axios.get(`${BASE_URL}/weather`, {
+      params: {
+        q: city,
+        appid: API_KEY,
+        units: 'metric', // Use Celsius
+      },
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching current weather:', error);
-    throw error;
+    // Handle HTTP errors
+    if (error.response) {
+      // Server responded with error status
+      console.error('API Error:', error.response.status, error.response.data.message);
+      throw new Error(error.response.data.message || 'Failed to fetch weather data');
+    } else if (error.request) {
+      // Request made but no response received
+      console.error('Network Error:', error.request);
+      throw new Error('Network error. Please check your connection.');
+    } else {
+      // Something else happened
+      console.error('Error:', error.message);
+      throw new Error('An unexpected error occurred');
+    }
   }
 };
 
 /**
- * Fetch 5-day weather forecast for a city
- * @param {string} city - City name
- * @returns {Promise} Forecast data
- */
-export const getForecast = async (city) => {
-  try {
-    const response = await apiClient.get('/forecast', {
-      params: { q: city },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching forecast:', error);
-    throw error;
-  }
-};
-
-/**
- * Fetch weather data by coordinates
- * @param {number} lat - Latitude
- * @param {number} lon - Longitude
- * @returns {Promise} Weather data
- */
-export const getWeatherByCoords = async (lat, lon) => {
-  try {
-    const response = await apiClient.get('/weather', {
-      params: { lat, lon },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching weather by coordinates:', error);
-    throw error;
-  }
-};
-
-/**
- * Fetch forecast data by coordinates
+ * Fetch 5-day weather forecast by coordinates
  * @param {number} lat - Latitude
  * @param {number} lon - Longitude
  * @returns {Promise} Forecast data
+ * @throws {Error} When API request fails
  */
-export const getForecastByCoords = async (lat, lon) => {
+export const fetchForecast = async (lat, lon) => {
   try {
-    const response = await apiClient.get('/forecast', {
-      params: { lat, lon },
+    const response = await axios.get(`${BASE_URL}/forecast`, {
+      params: {
+        lat,
+        lon,
+        appid: API_KEY,
+        units: 'metric', // Use Celsius
+      },
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching forecast by coordinates:', error);
-    throw error;
+    // Handle HTTP errors
+    if (error.response) {
+      // Server responded with error status
+      console.error('API Error:', error.response.status, error.response.data.message);
+      throw new Error(error.response.data.message || 'Failed to fetch forecast data');
+    } else if (error.request) {
+      // Request made but no response received
+      console.error('Network Error:', error.request);
+      throw new Error('Network error. Please check your connection.');
+    } else {
+      // Something else happened
+      console.error('Error:', error.message);
+      throw new Error('An unexpected error occurred');
+    }
   }
 };
-
-export default apiClient;
