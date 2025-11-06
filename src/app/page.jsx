@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import WeatherCard from '@/components/WeatherCard';
+import HourlyForecast from '@/components/HourlyForecast';
 import Forecast from '@/components/Forecast';
 import { fetchCurrent, fetchForecast } from '@/utils/apiClient';
 
@@ -101,6 +102,7 @@ export default function Home() {
         {!loading && !error && weather && (
           <>
             <WeatherCard weather={weather} />
+            <HourlyForecast forecast={forecast} />
             <Forecast forecast={forecast} />
           </>
         )}
