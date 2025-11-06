@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import SearchBar from '@/components/SearchBar';
+import Navbar from '@/components/Navbar';
 import WeatherCard from '@/components/WeatherCard';
 import HourlyForecast from '@/components/HourlyForecast';
 import Forecast from '@/components/Forecast';
@@ -67,28 +67,19 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 px-4">
-      <div className="container mx-auto">
-        {/* Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-slate-100 mb-2">
-            ☀️ SkyCast
-          </h1>
-          <p className="text-xl text-slate-300">
-            Your Modern Weather Forecast App
-          </p>
-        </header>
-
-        {/* Search Bar */}
-        <SearchBar onSearch={handleSearch} />
-
-        {/* Loading State */}
-        {loading && (
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
-            <p className="mt-4 text-slate-300">Loading weather data...</p>
-          </div>
-        )}
+    <>
+      {/* Navbar */}
+      <Navbar onSearch={handleSearch} currentLocation={weather?.name} />
+      
+      <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 px-4">
+        <div className="container mx-auto">
+          {/* Loading State */}
+          {loading && (
+            <div className="text-center">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
+              <p className="mt-4 text-slate-300">Loading weather data...</p>
+            </div>
+          )}
 
         {/* Error State */}
         {error && (
@@ -113,7 +104,8 @@ export default function Home() {
             <p className="text-xl">Search for a city to see the weather forecast</p>
           </div>
         )}
-      </div>
-    </main>
+        </div>
+      </main>
+    </>
   );
 }
