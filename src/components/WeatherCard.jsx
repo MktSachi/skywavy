@@ -12,7 +12,7 @@ import {
 import { FiWind, FiDroplet } from 'react-icons/fi';
 
 const getWeatherIcon = (weatherMain) => {
-  const iconClass = "w-24 h-24";
+  const iconClass = "w-32 h-32 text-white";
   switch (weatherMain?.toLowerCase()) {
     case 'clear':
       return <WiDaySunny className={iconClass} />;
@@ -45,33 +45,33 @@ export default function WeatherCard({ weather }) {
   const feelsLike = Math.round(main.feels_like);
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl shadow-2xl p-8 text-white max-w-md mx-auto border border-slate-700">
+    <div className="rounded-3xl shadow-2xl p-5 sm:p-6 md:p-7 text-white max-w-md mx-auto" style={{ background: 'linear-gradient(135deg, #0a1929 0%, #1e5a8e 100%)' }}>
       <div className="text-center">
-        <h2 className="text-4xl font-bold mb-2">{name}</h2>
-        <p className="text-xl capitalize mb-6">{weatherInfo[0]?.description}</p>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 break-words">{name}</h2>
+        <p className="text-base sm:text-lg md:text-xl capitalize mb-3 sm:mb-4 opacity-90">{weatherInfo[0]?.description}</p>
         
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-3 sm:mb-4">
           {getWeatherIcon(weatherInfo[0]?.main)}
         </div>
         
-        <div className="text-6xl font-bold mb-2">{temp}°C</div>
-        <p className="text-lg mb-8">Feels like {feelsLike}°C</p>
+        <div className="text-5xl sm:text-6xl md:text-7xl font-bold mb-1 sm:mb-2">{temp}°C</div>
+        <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-5 md:mb-6 opacity-90">Feels like {feelsLike}°C</p>
         
-        <div className="grid grid-cols-2 gap-4 mt-6">
-          <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-            <div className="flex items-center justify-center mb-2">
-              <FiWind className="w-6 h-6" />
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5">
+            <div className="flex items-center justify-center mb-1 sm:mb-2">
+              <FiWind className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
             </div>
-            <p className="text-sm opacity-90">Wind Speed</p>
-            <p className="text-xl font-semibold">{wind.speed} m/s</p>
+            <p className="text-xs sm:text-sm mb-1 opacity-80">Wind Speed</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold break-words">{wind.speed} m/s</p>
           </div>
           
-          <div className="bg-white/20 backdrop-blur rounded-xl p-4">
-            <div className="flex items-center justify-center mb-2">
-              <FiDroplet className="w-6 h-6" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5">
+            <div className="flex items-center justify-center mb-1 sm:mb-2">
+              <FiDroplet className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
             </div>
-            <p className="text-sm opacity-90">Humidity</p>
-            <p className="text-xl font-semibold">{main.humidity}%</p>
+            <p className="text-xs sm:text-sm mb-1 opacity-80">Humidity</p>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold">{main.humidity}%</p>
           </div>
         </div>
       </div>

@@ -71,39 +71,47 @@ export default function Home() {
       {/* Navbar */}
       <Navbar onSearch={handleSearch} currentLocation={weather?.name} />
       
-      <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 px-4">
-        <div className="container mx-auto">
+      <main className="min-h-screen py-12 px-4">
+        <div className="container mx-auto max-w-7xl">
           {/* Loading State */}
           {loading && (
-            <div className="text-center">
+            <div className="text-center py-20">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
               <p className="mt-4 text-slate-300">Loading weather data...</p>
             </div>
           )}
 
-        {/* Error State */}
-        {error && (
-          <div className="bg-red-900/30 border border-red-500 text-red-300 px-6 py-4 rounded-lg max-w-md mx-auto">
-            <p className="font-semibold">Error</p>
-            <p>{error}</p>
-          </div>
-        )}
+          {/* Error State */}
+          {error && (
+            <div className="bg-red-900/30 border border-red-500 text-red-300 px-6 py-4 rounded-lg max-w-md mx-auto my-20">
+              <p className="font-semibold">Error</p>
+              <p>{error}</p>
+            </div>
+          )}
 
-        {/* Weather Display */}
-        {!loading && !error && weather && (
-          <>
-            <WeatherCard weather={weather} />
-            <HourlyForecast forecast={forecast} />
-            <Forecast forecast={forecast} />
-          </>
-        )}
+          {/* Empty State */}
+          {!loading && !error && !weather && (
+            <div className="text-center text-slate-300 py-20">
+              <p className="text-2xl mb-4">🌤️ Welcome to SkyCast</p>
+              <p className="text-lg text-slate-400">Search for a city to see the weather forecast</p>
+            </div>
+          )}
 
-        {/* Empty State */}
-        {!loading && !error && !weather && (
-          <div className="text-center text-slate-400 mt-12">
-            <p className="text-xl">Search for a city to see the weather forecast</p>
-          </div>
-        )}
+          {/* Weather Content */}
+          {!loading && !error && weather && (
+            <>
+              {/* Home Section - Weather Card */}
+              <section id="home" className="mb-12">
+                <WeatherCard weather={weather} />
+              </section>
+
+              {/* Forecast Section */}
+              <section id="forecast">
+                <HourlyForecast forecast={forecast} />
+                <Forecast forecast={forecast} />
+              </section>
+            </>
+          )}
         </div>
       </main>
     </>

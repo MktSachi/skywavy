@@ -15,8 +15,15 @@ export default function Navbar({ onSearch, currentLocation }) {
     }
   };
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <nav className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
+    <nav className="bg-gradient-to-r from-[#0a1929] via-[#0d3d62] to-[#1e5a8e] backdrop-blur-sm border-b border-slate-700/50 sticky top-0 z-50 shadow-lg">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           {/* Left: Logo and Location */}
@@ -60,12 +67,18 @@ export default function Navbar({ onSearch, currentLocation }) {
 
           {/* Navigation Links (Optional) */}
           <div className="hidden lg:flex items-center gap-6 text-slate-300">
-            <a href="#forecast" className="hover:text-blue-400 transition-colors">
+            <button 
+              onClick={() => scrollToSection('home')} 
+              className="hover:text-blue-400 transition-colors cursor-pointer"
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => scrollToSection('forecast')} 
+              className="hover:text-blue-400 transition-colors cursor-pointer"
+            >
               Forecast
-            </a>
-            <a href="#hourly" className="hover:text-blue-400 transition-colors">
-              Hourly
-            </a>
+            </button>
           </div>
         </div>
 

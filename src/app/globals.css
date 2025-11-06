@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark Mode Theme Colors */
-  --background: #0f172a;
+  /* Sea Gradient Theme Colors */
+  --background: #0a1929;
   --foreground: #f1f5f9;
   --card-bg: #1e293b;
   --card-hover: #334155;
@@ -19,8 +19,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: linear-gradient(to bottom, #0f172a, #1e293b);
+  background: linear-gradient(135deg, #0a1929 0%, #0d3d62 25%, #1e5a8e 50%, #2e7bb4 75%, #1e5a8e 100%);
+  background-attachment: fixed;
   min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
