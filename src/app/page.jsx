@@ -75,25 +75,35 @@ export default function Home() {
         <div className="container mx-auto max-w-7xl">
           {/* Loading State */}
           {loading && (
-            <div className="text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
-              <p className="mt-4 text-slate-300">Loading weather data...</p>
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="text-center">
+                <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-blue-500 mb-6"></div>
+                <p className="text-xl text-slate-300 animate-pulse">Loading weather data...</p>
+              </div>
             </div>
           )}
 
           {/* Error State */}
           {error && (
-            <div className="bg-red-900/30 border border-red-500 text-red-300 px-6 py-4 rounded-lg max-w-md mx-auto my-20">
-              <p className="font-semibold">Error</p>
-              <p>{error}</p>
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="bg-red-900/30 border border-red-500 text-red-300 px-6 py-4 rounded-lg max-w-md">
+                <p className="font-semibold">Error</p>
+                <p>{error}</p>
+              </div>
             </div>
           )}
 
           {/* Empty State */}
           {!loading && !error && !weather && (
-            <div className="text-center text-slate-300 py-20">
-              <p className="text-2xl mb-4">🌤️ Welcome to Skywavy</p>
-              <p className="text-lg text-slate-400">Search for a city to see the weather forecast</p>
+            <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="text-center">
+                <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse-slow">
+                  🌤️ Welcome to Skywavy
+                </h1>
+                <p className="text-xl md:text-2xl text-slate-300 animate-fade-in">
+                  Search for a city to see the weather forecast
+                </p>
+              </div>
             </div>
           )}
 
