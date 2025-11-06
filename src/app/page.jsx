@@ -92,7 +92,7 @@ export default function Home() {
           {/* Empty State */}
           {!loading && !error && !weather && (
             <div className="text-center text-slate-300 py-20">
-              <p className="text-2xl mb-4">🌤️ Welcome to SkyCast</p>
+              <p className="text-2xl mb-4">🌤️ Welcome to Skywavy</p>
               <p className="text-lg text-slate-400">Search for a city to see the weather forecast</p>
             </div>
           )}

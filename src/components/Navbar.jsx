@@ -43,7 +43,7 @@ export default function Navbar({ onSearch, currentLocation }) {
             <div className="flex items-center gap-1 md:gap-2">
               <WiDaySunny className="w-8 h-8 md:w-10 md:h-10 text-blue-400" />
               <span className="text-lg md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent whitespace-nowrap">
-                SkyCast
+                Skywavy
               </span>
             </div>
 
