@@ -21,7 +21,7 @@ export default function SearchBar({ onSearch }) {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Search for a city..."
-          className="w-full px-6 py-4 pr-12 text-lg rounded-full border-2 border-gray-300 focus:border-blue-500 focus:outline-none transition-colors bg-white shadow-lg"
+          className="w-full px-6 py-4 pr-12 text-lg rounded-full border-2 border-slate-600 focus:border-blue-500 focus:outline-none transition-colors bg-slate-700 text-slate-100 placeholder-slate-400 shadow-lg"
         />
         <button
           type="submit"

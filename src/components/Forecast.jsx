@@ -49,35 +49,35 @@ export default function Forecast({ forecast }) {
 
   return (
     <div className="max-w-4xl mx-auto mt-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">5-Day Forecast</h3>
+      <h3 className="text-2xl font-bold text-slate-100 mb-6 text-center">5-Day Forecast</h3>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {dailyForecasts.map((day, index) => (
           <div 
             key={index}
-            className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
+            className="bg-slate-800 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl hover:bg-slate-700 transition-all border border-slate-700"
           >
-            <p className="text-sm font-semibold text-gray-600 mb-3">
+            <p className="text-sm font-semibold text-slate-300 mb-3">
               {formatDate(day.dt)}
             </p>
             
-            <div className="flex justify-center mb-3">
+            <div className="flex justify-center mb-3 text-blue-400">
               {getWeatherIcon(day.weather[0]?.main)}
             </div>
             
-            <p className="text-2xl font-bold text-gray-800 mb-2">
+            <p className="text-2xl font-bold text-slate-100 mb-2">
               {Math.round(day.main.temp)}°C
             </p>
             
-            <p className="text-sm text-gray-600 capitalize">
+            <p className="text-sm text-slate-400 capitalize">
               {day.weather[0]?.description}
             </p>
             
-            <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500">
+            <div className="mt-4 pt-4 border-t border-slate-600">
+              <p className="text-xs text-slate-400">
                 Wind: {day.wind.speed} m/s
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-400">
                 Humidity: {day.main.humidity}%
               </p>
             </div>

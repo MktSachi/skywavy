@@ -49,36 +49,36 @@ export default function HourlyForecast({ forecast }) {
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">24-Hour Forecast</h3>
+      <h3 className="text-2xl font-bold text-slate-100 mb-6 text-center">24-Hour Forecast</h3>
       
-      <div className="bg-white rounded-2xl shadow-lg p-6 overflow-x-auto">
+      <div className="bg-slate-800 rounded-2xl shadow-lg p-6 overflow-x-auto border border-slate-700">
         <div className="flex gap-4 min-w-max">
           {hourlyData.map((hour, index) => (
             <div 
               key={index}
-              className="flex flex-col items-center min-w-[100px] p-4 hover:bg-gray-50 rounded-xl transition-colors"
+              className="flex flex-col items-center min-w-[100px] p-4 hover:bg-slate-700 rounded-xl transition-colors"
             >
-              <p className="text-sm font-semibold text-gray-600 mb-2">
+              <p className="text-sm font-semibold text-slate-300 mb-2">
                 {index === 0 ? 'Now' : formatTime(hour.dt)}
               </p>
               
-              <div className="flex justify-center mb-2">
+              <div className="flex justify-center mb-2 text-blue-400">
                 {getWeatherIcon(hour.weather[0]?.main)}
               </div>
               
-              <p className="text-xl font-bold text-gray-800 mb-1">
+              <p className="text-xl font-bold text-slate-100 mb-1">
                 {Math.round(hour.main.temp)}°C
               </p>
               
-              <p className="text-xs text-gray-600 capitalize text-center">
+              <p className="text-xs text-slate-400 capitalize text-center">
                 {hour.weather[0]?.description}
               </p>
               
-              <div className="mt-3 pt-3 border-t border-gray-200 w-full">
-                <p className="text-xs text-gray-500 text-center">
+              <div className="mt-3 pt-3 border-t border-slate-600 w-full">
+                <p className="text-xs text-slate-400 text-center">
                   💧 {hour.main.humidity}%
                 </p>
-                <p className="text-xs text-gray-500 text-center">
+                <p className="text-xs text-slate-400 text-center">
                   💨 {Math.round(hour.wind.speed)} m/s
                 </p>
               </div>

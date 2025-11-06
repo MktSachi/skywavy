@@ -45,7 +45,7 @@ export default function WeatherCard({ weather }) {
   const feelsLike = Math.round(main.feels_like);
 
   return (
-    <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl shadow-2xl p-8 text-white max-w-md mx-auto">
+    <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl shadow-2xl p-8 text-white max-w-md mx-auto border border-slate-700">
       <div className="text-center">
         <h2 className="text-4xl font-bold mb-2">{name}</h2>
         <p className="text-xl capitalize mb-6">{weatherInfo[0]?.description}</p>

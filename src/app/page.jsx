@@ -67,14 +67,14 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 px-4">
       <div className="container mx-auto">
         {/* Header */}
         <header className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-800 mb-2">
+          <h1 className="text-5xl font-bold text-slate-100 mb-2">
             ☀️ SkyCast
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-slate-300">
             Your Modern Weather Forecast App
           </p>
         </header>
@@ -86,13 +86,13 @@ export default function Home() {
         {loading && (
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-500"></div>
-            <p className="mt-4 text-gray-600">Loading weather data...</p>
+            <p className="mt-4 text-slate-300">Loading weather data...</p>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg max-w-md mx-auto">
+          <div className="bg-red-900/30 border border-red-500 text-red-300 px-6 py-4 rounded-lg max-w-md mx-auto">
             <p className="font-semibold">Error</p>
             <p>{error}</p>
           </div>
@@ -109,7 +109,7 @@ export default function Home() {
 
         {/* Empty State */}
         {!loading && !error && !weather && (
-          <div className="text-center text-gray-600 mt-12">
+          <div className="text-center text-slate-400 mt-12">
             <p className="text-xl">Search for a city to see the weather forecast</p>
           </div>
         )}
